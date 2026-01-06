@@ -1,0 +1,138 @@
+# ecuapi-sdk-php
+
+API for electronic invoicing in Ecuador. Generate, sign, and send invoices to SRI.
+
+For more information, please visit [https://ecuapi.com](https://ecuapi.com).
+
+## Installation & Usage
+
+### Requirements
+
+PHP 8.1 and later.
+
+### Composer
+
+To install the bindings via [Composer](https://getcomposer.org/), add the following to `composer.json`:
+
+```json
+{
+  "repositories": [
+    {
+      "type": "vcs",
+      "url": "https://github.com/GIT_USER_ID/GIT_REPO_ID.git"
+    }
+  ],
+  "require": {
+    "GIT_USER_ID/GIT_REPO_ID": "*@dev"
+  }
+}
+```
+
+Then run `composer install`
+
+### Manual Installation
+
+Download the files and include `autoload.php`:
+
+```php
+<?php
+require_once('/path/to/ecuapi-sdk-php/vendor/autoload.php');
+```
+
+## Getting Started
+
+Please follow the [installation procedure](#installation--usage) and then run the following:
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+
+
+$apiInstance = new EcuaapiSdk\Api\CertificatesApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client()
+);
+
+try {
+    $result = $apiInstance->listCertificates();
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling CertificatesApi->listCertificates: ', $e->getMessage(), PHP_EOL;
+}
+
+```
+
+## API Endpoints
+
+All URIs are relative to *https://api.ecuapi.com*
+
+Class | Method | HTTP request | Description
+------------ | ------------- | ------------- | -------------
+*CertificatesApi* | [**listCertificates**](docs/Api/CertificatesApi.md#listcertificates) | **GET** /v1/certificates | List certificates
+*CertificatesApi* | [**uploadCertificate**](docs/Api/CertificatesApi.md#uploadcertificate) | **POST** /v1/certificates/upload | Upload P12 certificate
+*HealthApi* | [**getApiInfo**](docs/Api/HealthApi.md#getapiinfo) | **GET** /health | Basic health check
+*HealthApi* | [**getApiInfo_0**](docs/Api/HealthApi.md#getapiinfo_0) | **GET** /v1/health | Basic health check
+*HealthApi* | [**getDetailedHealth**](docs/Api/HealthApi.md#getdetailedhealth) | **GET** /health/health | Detailed health check
+*HealthApi* | [**getDetailedHealth_0**](docs/Api/HealthApi.md#getdetailedhealth_0) | **GET** /v1/health/health | Detailed health check
+*InvoicesApi* | [**authorizeInvoice**](docs/Api/InvoicesApi.md#authorizeinvoice) | **POST** /v1/invoices/{id}/authorize | Authorize invoice
+*InvoicesApi* | [**createInvoice**](docs/Api/InvoicesApi.md#createinvoice) | **POST** /v1/invoices | Create invoice
+*InvoicesApi* | [**getInvoice**](docs/Api/InvoicesApi.md#getinvoice) | **GET** /v1/invoices/{id} | Get invoice by ID
+*InvoicesApi* | [**getInvoicePdf**](docs/Api/InvoicesApi.md#getinvoicepdf) | **GET** /v1/invoices/{id}/pdf | Download RIDE PDF
+*InvoicesApi* | [**getInvoiceXml**](docs/Api/InvoicesApi.md#getinvoicexml) | **GET** /v1/invoices/{id}/xml | Download signed XML
+*InvoicesApi* | [**listInvoices**](docs/Api/InvoicesApi.md#listinvoices) | **GET** /v1/invoices | List invoices
+*InvoicesApi* | [**sendInvoice**](docs/Api/InvoicesApi.md#sendinvoice) | **POST** /v1/invoices/{id}/send | Send invoice to SRI
+*InvoicesApi* | [**voidInvoice**](docs/Api/InvoicesApi.md#voidinvoice) | **DELETE** /v1/invoices/{id} | Void invoice
+
+## Models
+
+- [AuthorizeInvoiceResponse](docs/Model/AuthorizeInvoiceResponse.md)
+- [AuthorizeInvoiceResponseData](docs/Model/AuthorizeInvoiceResponseData.md)
+- [Certificate](docs/Model/Certificate.md)
+- [CertificateError](docs/Model/CertificateError.md)
+- [CertificateErrorError](docs/Model/CertificateErrorError.md)
+- [CertificateListResponse](docs/Model/CertificateListResponse.md)
+- [CertificateUploadResponse](docs/Model/CertificateUploadResponse.md)
+- [CertificateUploadResponseData](docs/Model/CertificateUploadResponseData.md)
+- [CertificateUploadResponseMeta](docs/Model/CertificateUploadResponseMeta.md)
+- [CreateInvoiceRequest](docs/Model/CreateInvoiceRequest.md)
+- [CreateInvoiceResponse](docs/Model/CreateInvoiceResponse.md)
+- [CreateInvoiceResponseData](docs/Model/CreateInvoiceResponseData.md)
+- [Customer](docs/Model/Customer.md)
+- [Error](docs/Model/Error.md)
+- [ErrorError](docs/Model/ErrorError.md)
+- [HealthResponse](docs/Model/HealthResponse.md)
+- [HealthResponseChecks](docs/Model/HealthResponseChecks.md)
+- [Invoice](docs/Model/Invoice.md)
+- [InvoiceDetailResponse](docs/Model/InvoiceDetailResponse.md)
+- [InvoiceItem](docs/Model/InvoiceItem.md)
+- [InvoiceListResponse](docs/Model/InvoiceListResponse.md)
+- [Meta](docs/Model/Meta.md)
+- [SendInvoiceResponse](docs/Model/SendInvoiceResponse.md)
+- [SendInvoiceResponseData](docs/Model/SendInvoiceResponseData.md)
+
+## Authorization
+Endpoints do not require authorization.
+
+## Tests
+
+To run the tests, use:
+
+```bash
+composer install
+vendor/bin/phpunit
+```
+
+## Author
+
+support@ecuabyte.lat
+
+## About this package
+
+This PHP package is automatically generated by the [OpenAPI Generator](https://openapi-generator.tech) project:
+
+- API version: `1.0.0`
+    - Generator version: `7.18.0`
+- Build package: `org.openapitools.codegen.languages.PhpClientCodegen`
