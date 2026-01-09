@@ -1,0 +1,17 @@
+name: Notify Parent Repository
+
+on:
+  push:
+    branches: [main, master]
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Notify ecuapi
+        uses: peter-evans/repository-dispatch@v3
+        with:
+          token: ${{ secrets.SUBMODULE_PAT }}
+          repository: EcuaByte-lat/ecuapi
+          event-type: submodule-update
+          client-payload: '{"submodule": "packages/sdk-php", "ref": "${{ github.sha }}"}'
